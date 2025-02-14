@@ -1,6 +1,5 @@
 ############################### Objective ######################################
-# Connect to hpg user. Read files. Extract data. Plot results.
-
+# Connect to hpg. Read files. Extract data. Plot results.
 
 ################################### Notes ######################################
 
@@ -34,11 +33,6 @@ fdf <- data.frame(
   PE2 = logical(0), SE2 = logical(0),
   PE3 = logical(0), SE3 = logical(0)
 )
-
-# traits_fix <- c('Test', 'P305M')
-# mapper_raw <- c('01', '02', '03', '04')
-# mapper_trait <- c('CO', 'DU', 'AS', 'RS')
-
 
 idx = 0
 for (dir1 in dirs1) {
@@ -97,7 +91,6 @@ DU <- fdf[substr(fdf$dir2, 1, 2) %in% '02', ]
 AS <- fdf[substr(fdf$dir2, 1, 2) %in% '03', ]
 RS <- fdf[substr(fdf$dir2, 1, 2) %in% '04', ]
 
-
 CO$LB <- CO$PE3 - 2 * CO$SE3
 CO$UB <- CO$PE3 + 2 * CO$SE3
 DU$LB <- DU$PE3 - 2 * DU$SE3
@@ -116,55 +109,52 @@ AS$LABEL <- paste0(substr(AS$dir1, 1, 3), AS$dir2)
 RS$LABEL <- paste0(substr(RS$dir1, 1, 3), RS$dir2)
 RS$LABEL <- paste0(substr(RS$dir1, 1, 3), RS$dir2)
 
-
 ## CO
 ggplot(CO, aes(x = PE3, y = LABEL)) +
-  geom_point(color = "blue", size = 2) +  # Point estimates
-  geom_errorbarh(aes(xmin = LB, xmax = UB), height = 0.3, color = "red") +  # Confidence intervals
+  geom_point(color = "blue", size = 2) + 
+  geom_errorbarh(aes(xmin = LB, xmax = UB), height = 0.3, color = "red") +
   theme_minimal() +
   labs(x = "Point Estimate (PE3)", y = NULL, title = "Point Estimates with Confidence Intervals") +
   theme(
-    strip.text = element_blank(),  # Removes facet titles to save space
-    axis.text.y = element_text(size = 8),  # Adjusts label size
-    panel.spacing.y = unit(0.2, "lines")  # Reduces vertical space between facets
+    strip.text = element_blank(), 
+    axis.text.y = element_text(size = 8), 
+    panel.spacing.y = unit(0.2, "lines")
   )
 
 ## DU
 ggplot(DU, aes(x = PE3, y = LABEL)) +
-  geom_point(color = "blue", size = 2) +  # Point estimates
-  geom_errorbarh(aes(xmin = LB, xmax = UB), height = 0.3, color = "red") +  # Confidence intervals
+  geom_point(color = "blue", size = 2) +
+  geom_errorbarh(aes(xmin = LB, xmax = UB), height = 0.3, color = "red") +
   theme_minimal() +
   labs(x = "Point Estimate (PE3)", y = NULL, title = "Point Estimates with Confidence Intervals") +
   theme(
-    strip.text = element_blank(),  # Removes facet titles to save space
-    axis.text.y = element_text(size = 8),  # Adjusts label size
-    panel.spacing.y = unit(0.2, "lines")  # Reduces vertical space between facets
+    strip.text = element_blank(), 
+    axis.text.y = element_text(size = 8),
+    panel.spacing.y = unit(0.2, "lines")
   )
 
 ## AS
 ggplot(AS, aes(x = PE3, y = LABEL)) +
-  geom_point(color = "blue", size = 2) +  # Point estimates
-  geom_errorbarh(aes(xmin = LB, xmax = UB), height = 0.3, color = "red") +  # Confidence intervals
+  geom_point(color = "blue", size = 2) +
+  geom_errorbarh(aes(xmin = LB, xmax = UB), height = 0.3, color = "red") +
   theme_minimal() +
   labs(x = "Point Estimate (PE3)", y = NULL, title = "Point Estimates with Confidence Intervals") +
   theme(
-    strip.text = element_blank(),  # Removes facet titles to save space
-    axis.text.y = element_text(size = 8),  # Adjusts label size
-    panel.spacing.y = unit(0.2, "lines")  # Reduces vertical space between facets
+    strip.text = element_blank(), 
+    axis.text.y = element_text(size = 8),
+    panel.spacing.y = unit(0.2, "lines")
   )
-
-
 
 ## RS
 ggplot(RS, aes(x = PE3, y = LABEL)) +
-  geom_point(color = "blue", size = 2) +  # Point estimates
-  geom_errorbarh(aes(xmin = LB, xmax = UB), height = 0.3, color = "red") +  # Confidence intervals
+  geom_point(color = "blue", size = 2) +
+  geom_errorbarh(aes(xmin = LB, xmax = UB), height = 0.3, color = "red") +
   theme_minimal() +
   labs(x = "Point Estimate (PE3)", y = NULL, title = "Point Estimates with Confidence Intervals") +
   theme(
-    strip.text = element_blank(),  # Removes facet titles to save space
-    axis.text.y = element_text(size = 8),  # Adjusts label size
-    panel.spacing.y = unit(0.2, "lines")  # Reduces vertical space between facets
+    strip.text = element_blank(),
+    axis.text.y = element_text(size = 8),
+    panel.spacing.y = unit(0.2, "lines")
   )
 
 ############################## Disconnect session ##############################
